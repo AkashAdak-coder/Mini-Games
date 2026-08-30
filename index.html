@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Games</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <div class="side-bar">
+      <h1>Mini Games</h1>
+      <hr>
+      <div class="games">
+        <button class="game-btn active">Rock Paper Scissor</button>
+        <button class="game-btn">Tic Tac Toe</button>
+      </div>
+    </div>
+    <div class="game-dash-board">
+      <div class="game-content active" id="rpc">
+        <h2>Rock Paper Scissor</h2>
+
+        <div class="display-moves">
+          <div class="js-result result"></div>
+          <div class="js-show-moves show-moves"></div>
+          <div class="js-count-result count-result">
+            Win: 0  Lose: 0  Tie: 0
+          </div>
+        </div>
+
+        <div class="user-moves">
+          <button title="rock" class="js-rock-paper-scissor-btn">
+          <i class="fa-solid fa-hand-back-fist"></i>
+          </button>
+
+          <button title="paper" class="js-rock-paper-scissor-btn">
+          <i class="fa-solid fa-hand"></i>
+          </button>
+
+          <button title="scissor" class="js-rock-paper-scissor-btn">
+          <i class="fa-solid fa-hand-scissors"></i>
+          </button>
+        </div>
+
+        <div class="feature-buttons">
+          <button onclick="
+              autoPlay();
+          " class="js-auto-play-btn">auto-play</button>
+          <button class="js-reset-score-btn">reset score</button>                
+        </div>
+
+      </div>
+
+      <div class="game-content">
+        <h2>Tic Tac Toe</h2>
+
+        <div class="grid-box">
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+          <button class="js-btns"></button>
+        </div>
+
+        <button class="reset-game">Restart Game</button>
+        <div class="winner-result-box"></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
