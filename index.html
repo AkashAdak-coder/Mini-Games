@@ -14,8 +14,8 @@
       <h1>Mini Games</h1>
       <hr>
       <div class="games">
-        <button class="game-btn active">Rock Paper Scissor</button>
-        <button class="game-btn">Tic Tac Toe</button>
+        <button class="game-btn active" onclick="switchTab('rpc')">Rock Paper Scissor</button>
+        <button class="game-btn" onclick="switchTab('ttt')" >Tic Tac Toe</button>
       </div>
     </div>
     <div class="game-dash-board">
@@ -53,7 +53,7 @@
 
       </div>
 
-      <div class="game-content">
+      <div class="game-content" id="ttt">
         <h2>Tic Tac Toe</h2>
 
         <div class="grid-box">
@@ -73,5 +73,7 @@
       </div>
     </div>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

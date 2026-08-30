@@ -65,7 +65,7 @@ body{
   transition: transform 0.3s;
 }
 
-.games .game-btn.active{
+.games .active{
   background-color: var(--accent-color);
   color: var(--text-color);
 }
@@ -105,7 +105,7 @@ body{
 .show-moves,
 .count-result{
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -113,6 +113,9 @@ body{
 .show-moves{
   display: flex;
   justify-content: space-evenly;
+  color: var(--accent-color);
+  font-size: 3em;
+  margin: 20px 0;
 }
 
 .count-result{
@@ -205,7 +208,7 @@ i:hover{
 
 .winner-result-box{
   padding: 5px;
-  background-color: var(--button-color);
+  background-color: rgb(163, 73, 246);
   border-left: 2px solid var(--accent-color);
   color: var(--text-color);
   text-align: center;
