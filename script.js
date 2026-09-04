@@ -194,7 +194,9 @@ buttons.forEach(btn => {
       if(btn.textContent === ''){
         btn.textContent = '0';
         btn.disabled = true;
+        checkWinner();
         if(!gameover){
+          gameover = true;
           setTimeout(pickCompanionMove,1000);
         }
       }
@@ -207,8 +209,8 @@ buttons.forEach(btn => {
         turn = true;
       }
       btn.disabled = true;
+      checkWinner();
     }
-    checkWinner();
   })
 })
 
@@ -270,8 +272,6 @@ singleModeBtn.addEventListener('click', ()=>{
 });
 
 function pickCompanionMove(){
-  if(gameover) return;
-
   let emptyIndexs = [];
 
   buttons.forEach((btn,index) => {
@@ -289,4 +289,5 @@ function pickCompanionMove(){
 
   buttons[moveIndex].textContent = 'x';
   buttons[moveIndex].disabled = true;
+  gameover = false;
 }
