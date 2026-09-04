@@ -171,9 +171,11 @@ function autoPlay(){
 const buttons = document.querySelectorAll('.js-btns');
 const resultDiv = document.querySelector('.winner-result-box');
 const resetBtn = document.querySelector('.reset-game');
+const singleModeBtn = document.querySelector('.js-single-mode-btn');
 
 let turn = true;
-let move;
+let gameover = false;
+let mode = 'dual-mode';
 const winningPetterns = [
   [0,1,2],
   [0,3,6],
@@ -185,56 +187,106 @@ const winningPetterns = [
   [0,4,8]
 ];
 
-buttons.forEach( (button,index) => {
-  button.addEventListener('click', () => {
-    if(turn){
-      turn = false;
-      button.textContent = 'X';
-    } else {
-      turn = true;
-      button.textContent = '0';
-    }
-    button.disabled = true;
-    winner();
-  });
-});
 
-let count = 0;
-function winner(){
-  winningPetterns.forEach( pattern => {
-    count++;
-    let pos1 = buttons[pattern[0]].textContent;
-    let pos2 = buttons[pattern[1]].textContent;
-    let pos3 = buttons[pattern[2]].textContent;
-    
-    if(pos1 != '' && pos2 != '' && pos3 != ''){
-      if((pos1 === pos2) && (pos2 === pos3)){
-        buttons.forEach(btn => {
-          btn.disabled = true;
-        })
-        displayResult(pos1);
-      } else if(count === 72){
-        displayResult('draw');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if(mode === 'single-mode'){
+      if(btn.textContent === ''){
+        btn.textContent = '0';
+        btn.disabled = true;
+        if(!gameover){
+          setTimeout(pickCompanionMove,1000);
+        }
       }
+    }else{
+      if(turn){
+        btn.textContent = 'x';
+        turn = false;
+      } else{
+        btn.textContent = '0';
+        turn = true;
+      }
+      btn.disabled = true;
     }
-  });
-}
+    checkWinner();
+  })
+})
 
-function displayResult(move){
-  if(move === 'X'){
+function displayWinner(winner){
+  if(winner === 'x'){
     resultDiv.textContent = 'Player1 Win';
-  } else if (move === '0'){
-    resultDiv.textContent = 'Player2 Win'
+  } else if(winner === '0'){
+    resultDiv.textContent = 'Player2 Win';
   } else {
     resultDiv.textContent = 'Draw';
   }
 }
 
-resetBtn.addEventListener('click', () => {
-  buttons.forEach( button => {
-    button.textContent = '';
-    resultDiv.textContent = '';
-    button.disabled = false;
-    count = 0;
+function checkWinner(){
+  winningPetterns.forEach( pattern => {
+    let pos1 = buttons[pattern[0]].textContent;
+    let pos2 = buttons[pattern[1]].textContent;
+    let pos3 = buttons[pattern[2]].textContent;
+
+    if(pos1 !== '' && pos1 === pos2 && pos2 === pos3){
+      displayWinner(pos1);
+      gameover = true;
+    }
+
+    let isEmpty = Array.from(buttons).every(btn => btn.textContent !== '');
+    if(isEmpty){
+      displayWinner('draw');
+      gameover =  true;
+    }
+
+    if(gameover){
+      buttons.forEach(btn => {
+        btn.disabled = true;
+      });
+    }
   })
+}
+
+function resetGame(){
+  gameover = false;
+
+  buttons.forEach(btn => {
+    btn.disabled = false;
+    btn.textContent = '';
+  });
+
+  resultDiv.textContent = '';
+  turn = true;
+  mode = 'dual-mode';
+  gameover = false;
+  singleModeBtn.textContent = 'Play With Computer';
+}
+
+resetBtn.addEventListener('click', resetGame);
+
+singleModeBtn.addEventListener('click', ()=>{
+  mode = 'single-mode';
+  singleModeBtn.textContent = 'Playing...';
 });
+
+function pickCompanionMove(){
+  if(gameover) return;
+
+  let emptyIndexs = [];
+
+  buttons.forEach((btn,index) => {
+    if(btn.textContent === ''){
+      emptyIndexs.push(index);
+    }
+  });
+
+  if(emptyIndexs.length === 0){
+    return;
+  }
+
+  let companion = Math.floor(Math.random() * emptyIndexs.length);
+  let moveIndex = emptyIndexs[companion];
+
+  buttons[moveIndex].textContent = 'x';
+  buttons[moveIndex].disabled = true;
+}

@@ -93,6 +93,7 @@ body{
   background-color: var(--card-color);
   box-shadow: 0 5px 15px var(--accent-color);
   margin: 20px 0;
+  align-items: center;
 }
 
 .game-content h2{
@@ -119,7 +120,7 @@ body{
 }
 
 .count-result{
-  word-spacing: 10px;
+  word-spacing: 10px;flex-direction: column;
   color: var(--text-muted);
 }
 
@@ -167,7 +168,11 @@ button i{
   transition: transform 0.3s;
 }
 
-button:hover{
+.game-btn:hover,
+.reset-game:hover,
+.js-auto-play-btn:hover,
+.js-reset-score-btn:hover,
+.js-single-mode-btn:hover{
   background-color: var(--button-hover);
   transform: scale(1.03);
 }
@@ -193,10 +198,19 @@ i:hover{
   cursor: pointer;
 }
 
-.reset-game{
+.button-section{
   width: 100%;
-  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 10px 0;
+}
+
+.reset-game,
+.js-single-mode-btn{
+  width: 100%;
+  padding: 14px 0;
   border: none;
   border-radius: 6px;
   font-size: 1.1em;
@@ -207,8 +221,9 @@ i:hover{
 }
 
 .winner-result-box{
-  padding: 5px;
-  background-color: rgb(163, 73, 246);
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(124, 122, 122, 0.203);
   border-left: 2px solid var(--accent-color);
   color: var(--text-color);
   text-align: center;
@@ -216,7 +231,7 @@ i:hover{
   font-size: 1.8em
 }
 
-@media (min-width: 266px) and (max-width: 515px) {
+@media (min-width: 266px) and (max-width: 560px) {
   .app {
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 4fr;
@@ -296,7 +311,7 @@ i:hover{
   }
 }
 
-@media (min-width: 516px) and (max-width: 1040px) {
+@media (min-width: 561px) and (max-width: 1040px) {
   .app {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 5fr;
