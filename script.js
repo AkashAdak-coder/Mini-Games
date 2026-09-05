@@ -216,9 +216,9 @@ buttons.forEach(btn => {
 
 function displayWinner(winner){
   if(winner === 'x'){
-    resultDiv.textContent = 'Player1 Win';
+    resultDiv.textContent = 'Player x Win';
   } else if(winner === '0'){
-    resultDiv.textContent = 'Player2 Win';
+    resultDiv.textContent = 'Player 0 Win';
   } else {
     resultDiv.textContent = 'Draw';
   }
